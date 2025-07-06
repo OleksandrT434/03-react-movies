@@ -22,9 +22,9 @@ export default function App() {
         try {
             setIsLoading(true);
             setError(false);
-            const data = await fetchMovies({ query });
-            setMovies(data.results);
-            if (data.results.length === 0) {
+            const movies = await fetchMovies({ query });
+            setMovies(movies);
+            if (movies.length === 0) {
                 toast.error('No movies found for your search.');
             }
 
@@ -38,7 +38,7 @@ export default function App() {
     }
     const handleSelect = (movie: Movie): void => {
         setSelectedMovie(movie);
-        console.log('Selected movie:', movie);
+/*         console.log('Selected movie:', movie); */
     }
     return (
         <div className={css.app}>

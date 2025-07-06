@@ -20,11 +20,13 @@ export default function MovieModal({ movie, onClose }: MovieModalProps) {
             onClose();
           }
         };
-      
+        document.body.style.overflow = "hidden"; 
         document.addEventListener("keydown", handleKeyDown);
       
         return () => {
-          document.removeEventListener("keydown", handleKeyDown);
+        document.removeEventListener("keydown", handleKeyDown);
+        document.body.style.overflow = "";
+            
         };
       }, [onClose]);
         return createPortal(
