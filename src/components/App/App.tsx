@@ -6,7 +6,7 @@ import {fetchMovies} from '../../services/movieService';
 import { useState } from 'react';
 import { Loader } from '../Loader/Loader';
 import { ErrorMessage } from '../ErrorMessage/ErrorMessage';
-import { toast } from 'react-hot-toast';
+import { Toaster, toast } from 'react-hot-toast';
 import  MovieModal  from '../MovieModal/MovieModal';
 
 
@@ -43,12 +43,13 @@ export default function App() {
     return (
         <div className={css.app}>
             <SearchBar onSubmit={handleSearch} />
-            {isLoading ? (
-             <Loader />) : (
-                <MovieGrid movies={movies} onSelect={handleSelect} />)}
+            <Toaster
+             position="top-center"
+             reverseOrder={false}/>
+            {isLoading ? ( <Loader />) : (<MovieGrid movies={movies} onSelect={handleSelect} />)}
             {error && (<ErrorMessage />) }
             {selectedMovie && (
-  <MovieModal movie={selectedMovie} onClose={() => setSelectedMovie(null)} />)}
+            <MovieModal movie={selectedMovie} onClose={() => setSelectedMovie(null)} />)}
         </div>
     );
 }
